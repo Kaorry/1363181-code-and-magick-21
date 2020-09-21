@@ -11,13 +11,13 @@ const BAR_GAP = 50;
 const BAR_WIDTH = 40;
 const BAR_HEIGHT = 150;
 
-let renderCloud = function (ctx, x, y, color) {
+const renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-let getMaxElement = function (times) {
-  let maxElement = times[0];
+const getMaxElement = function (times) {
+  const maxElement = times[0];
 
   for (let i = 1; i < times.length; i++) {
     if (times[i] > maxElement) {
@@ -46,7 +46,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.font = `16px PT Mono`;
   ctx.textBaseline = `hanging`;
 
-  let texts = [`Ура вы победили!`, `Список результатов:`];
+  const texts = [`Ура вы победили!`, `Список результатов:`];
 
   for (let i = 0; i < texts.length; i++) {
     ctx.fillText(
@@ -56,7 +56,7 @@ window.renderStatistics = function (ctx, names, times) {
     );
   }
 
-  let maxTime = getMaxElement(times);
+  const maxTime = getMaxElement(times);
 
   for (let j = 0; j < names.length; j++) {
     ctx.fillText(
