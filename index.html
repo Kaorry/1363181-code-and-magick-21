@@ -185,35 +185,35 @@
 
   /* eslint-disable no-used-vars */
 
-  var LEFT_DIRECTION = 2;
-  var RIGHT_DIRECTION = 5;
-  var COEFFICIENT_FOR_WIDTH = 1.337;
-  var HORIZONTAL_POSITION = 2;
-  var VERTICAL_POSITION = 3;
+  const LEFT_DIRECTION = 2;
+  const RIGHT_DIRECTION = 5;
+  const COEFFICIENT_FOR_WIDTH = 1.337;
+  const HORIZONTAL_POSITION = 2;
+  const VERTICAL_POSITION = 3;
 
-  var fireballSize = 22;
+  const fireballSize = 22;
 
-  var getFireballSpeed = function (isMovingLeft) {
+  let getFireballSpeed = function (isMovingLeft) {
     return isMovingLeft ? LEFT_DIRECTION : RIGHT_DIRECTION;
   };
 
-  var wizardWidth = 70;
+  const wizardWidth = 70;
 
-  var getWizardHeight = function () {
+  let getWizardHeight = function () {
     return COEFFICIENT_FOR_WIDTH * wizardWidth;
   };
 
-  var wizardSpeed = 3;
+  const wizardSpeed = 3;
 
-  var getWizardX = function (gameFieldWidth) {
+  let getWizardX = function (gameFieldWidth) {
     return (gameFieldWidth - wizardWidth) / HORIZONTAL_POSITION;
   };
 
-  var getWizardY = function (gameFieldHeight) {
+  let getWizardY = function (gameFieldHeight) {
     return gameFieldHeight / VERTICAL_POSITION;
   };
 </script>
-
+<script src="js/stat.js"></script>
 <script src="js/game.js"></script>
 
 </body>
