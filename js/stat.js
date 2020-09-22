@@ -11,19 +11,25 @@ const BAR_GAP = 50;
 const BAR_WIDTH = 40;
 const BAR_HEIGHT = 150;
 
+const TEXTS = [`Ура вы победили!`, `Список результатов:`];
+
 const Color = {
   CLOUD_SHADOW: `rgba(0, 0, 0, 0.7)`,
   WHITE: `#fff`,
   BLACK: `#000`,
-  FOR_PLAYER: `rgba(255, 0, 0, 1)`,
+  FOR_PLAYER: `rgba(255, 0, 0, 1)`
 };
 
-const renderCloud = function (ctx, x, y, color) {
+const renderCloud = (ctx, x, y, color) => {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-const getMaxElement = function (times) {
+const getRandom = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
+const getRandomColor = () => `hsl(240, ` + getRandom(0, 100) + `%, 50%)`;
+const getColorForPlayer = (playerName) => playerName === `Вы` ? Color.FOR_PLAYER : getRandomColor();
+
+const getMaxElement = (times) => {
   let maxElement = times[0];
 
   for (let i = 1; i < times.length; i++) {
@@ -53,15 +59,13 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.font = `16px PT Mono`;
   ctx.textBaseline = `hanging`;
 
-  const texts = [`Ура вы победили!`, `Список результатов:`];
-
-  for (let i = 0; i < texts.length; i++) {
+  TEXTS.forEach((text, index) => {
     ctx.fillText(
-        texts[i],
+        text,
         CLOUD_X + FONT_GAP,
-        CLOUD_Y + FONT_GAP * (i + 1)
+        CLOUD_Y + FONT_GAP * (index + 1)
     );
-  }
+  });
 
   const maxTime = getMaxElement(times);
 
@@ -77,15 +81,11 @@ window.renderStatistics = function (ctx, names, times) {
         CLOUD_HEIGHT - GAP - LINE - (BAR_HEIGHT * times[i]) / maxTime
     );
 
-    const getRandom = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
-    const getRandomColor = () => `hsl(240, ` + getRandom(0, 100) + `%, 50%)`;
-    const getColorForPlayer = (playerName) => playerName === `Вы` ? Color.FOR_PLAYER : getRandomColor();
-
     ctx.fillStyle = getColorForPlayer(names[i]);
 
     ctx.fillRect(
         CLOUD_X + LINE + (BAR_WIDTH + BAR_GAP) * i,
-        CLOUD_Y + LINE * texts.length + BAR_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime,
+        CLOUD_Y + LINE * TEXTS.length + BAR_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime,
         BAR_WIDTH,
         (BAR_HEIGHT * times[i]) / maxTime
     );
