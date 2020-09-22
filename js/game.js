@@ -10,25 +10,17 @@ const VERTICAL_POSITION = 3;
 
 const fireballSize = 22;
 
-let getFireballSpeed = function (isMovingLeft) {
-  return isMovingLeft ? LEFT_DIRECTION : RIGHT_DIRECTION;
-};
+const getFireballSpeed = (isMovingLeft) => isMovingLeft ? LEFT_DIRECTION : RIGHT_DIRECTION;
 
 const wizardWidth = 70;
 
-let getWizardHeight = function () {
-  return COEFFICIENT_FOR_WIDTH * wizardWidth;
-};
+const getWizardHeight = () => COEFFICIENT_FOR_WIDTH * wizardWidth;
 
 const wizardSpeed = 3;
 
-let getWizardX = function (gameFieldWidth) {
-  return (gameFieldWidth - wizardWidth) / HORIZONTAL_POSITION;
-};
+const getWizardX = (gameFieldWidth) => (gameFieldWidth - wizardWidth) / HORIZONTAL_POSITION;
 
-let getWizardY = function (gameFieldHeight) {
-  return gameFieldHeight / VERTICAL_POSITION;
-};
+const getWizardY = (gameFieldHeight) => gameFieldHeight / VERTICAL_POSITION;
 
 window.GameConstants = {
   Fireball: {

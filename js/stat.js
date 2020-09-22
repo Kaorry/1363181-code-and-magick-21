@@ -11,13 +11,20 @@ const BAR_GAP = 50;
 const BAR_WIDTH = 40;
 const BAR_HEIGHT = 150;
 
+const Color = {
+  CLOUD_SHADOW: `rgba(0, 0, 0, 0.7)`,
+  WHITE: `#fff`,
+  BLACK: `#000`,
+  FOR_PLAYER: `rgba(255, 0, 0, 1)`,
+};
+
 const renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
 const getMaxElement = function (times) {
-  const maxElement = times[0];
+  let maxElement = times[0];
 
   for (let i = 1; i < times.length; i++) {
     if (times[i] > maxElement) {
@@ -33,16 +40,16 @@ window.renderStatistics = function (ctx, names, times) {
       ctx,
       CLOUD_X + GAP,
       CLOUD_Y + GAP,
-      `rgba(0, 0, 0, 0.7)`
+      Color.CLOUD_SHADOW
   );
   renderCloud(
       ctx,
       CLOUD_X,
       CLOUD_Y,
-      `#fff`
+      Color.WHITE
   );
 
-  ctx.fillStyle = `#000`;
+  ctx.fillStyle = Color.BLACK;
   ctx.font = `16px PT Mono`;
   ctx.textBaseline = `hanging`;
 
@@ -58,32 +65,31 @@ window.renderStatistics = function (ctx, names, times) {
 
   const maxTime = getMaxElement(times);
 
-  for (let j = 0; j < names.length; j++) {
+  for (let i = 0; i < names.length; i++) {
     ctx.fillText(
-        names[j],
-        CLOUD_X + FONT_GAP + FONT_GAP + (BAR_WIDTH + BAR_GAP) * j,
+        names[i],
+        CLOUD_X + FONT_GAP + FONT_GAP + (BAR_WIDTH + BAR_GAP) * i,
         CLOUD_HEIGHT - FONT_GAP
     );
     ctx.fillText(
-        Math.ceil(times[j]),
-        CLOUD_X + LINE + (BAR_WIDTH + BAR_GAP) * j,
-        CLOUD_HEIGHT - GAP - LINE - (BAR_HEIGHT * times[j]) / maxTime
+        Math.ceil(times[i]),
+        CLOUD_X + LINE + (BAR_WIDTH + BAR_GAP) * i,
+        CLOUD_HEIGHT - GAP - LINE - (BAR_HEIGHT * times[i]) / maxTime
     );
 
-    if (names[j] === `Вы`) {
-      ctx.fillStyle = `rgba(255, 0, 0, 1)`;
-    } else {
-      let randSaturation = Math.ceil(Math.random() * 100);
-      ctx.fillStyle = `hsl(240, ` + randSaturation + `%, 50%)`;
-    }
+    const getRandom = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
+    const getRandomColor = () => `hsl(240, ` + getRandom(0, 100) + `%, 50%)`;
+    const getColorForPlayer = (playerName) => playerName === `Вы` ? Color.FOR_PLAYER : getRandomColor();
+
+    ctx.fillStyle = getColorForPlayer(names[i]);
 
     ctx.fillRect(
-        CLOUD_X + LINE + (BAR_WIDTH + BAR_GAP) * j,
-        CLOUD_Y + LINE * texts.length + BAR_HEIGHT - (BAR_HEIGHT * times[j]) / maxTime,
+        CLOUD_X + LINE + (BAR_WIDTH + BAR_GAP) * i,
+        CLOUD_Y + LINE * texts.length + BAR_HEIGHT - (BAR_HEIGHT * times[i]) / maxTime,
         BAR_WIDTH,
-        (BAR_HEIGHT * times[j]) / maxTime
+        (BAR_HEIGHT * times[i]) / maxTime
     );
 
-    ctx.fillStyle = `#000`;
+    ctx.fillStyle = Color.BLACK;
   }
 };
