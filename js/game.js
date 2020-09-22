@@ -1,5 +1,27 @@
 'use strict';
 
+// Customization
+
+const LEFT_DIRECTION = 2;
+const RIGHT_DIRECTION = 5;
+const COEFFICIENT_FOR_WIDTH = 1.337;
+const HORIZONTAL_POSITION = 2;
+const VERTICAL_POSITION = 3;
+
+const fireballSize = 22;
+
+const getFireballSpeed = (isMovingLeft) => isMovingLeft ? LEFT_DIRECTION : RIGHT_DIRECTION;
+
+const wizardWidth = 70;
+
+const getWizardHeight = () => COEFFICIENT_FOR_WIDTH * wizardWidth;
+
+const wizardSpeed = 3;
+
+const getWizardX = (gameFieldWidth) => (gameFieldWidth - wizardWidth) / HORIZONTAL_POSITION;
+
+const getWizardY = (gameFieldHeight) => gameFieldHeight / VERTICAL_POSITION;
+
 window.GameConstants = {
   Fireball: {
     size: fireballSize || 24,

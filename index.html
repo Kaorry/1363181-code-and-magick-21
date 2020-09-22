@@ -180,40 +180,7 @@
   </div>
 </template>
 
-<script>
-  'use strict';
-
-  /* eslint-disable no-used-vars */
-
-  var LEFT_DIRECTION = 2;
-  var RIGHT_DIRECTION = 5;
-  var COEFFICIENT_FOR_WIDTH = 1.337;
-  var HORIZONTAL_POSITION = 2;
-  var VERTICAL_POSITION = 3;
-
-  var fireballSize = 22;
-
-  var getFireballSpeed = function (isMovingLeft) {
-    return isMovingLeft ? LEFT_DIRECTION : RIGHT_DIRECTION;
-  };
-
-  var wizardWidth = 70;
-
-  var getWizardHeight = function () {
-    return COEFFICIENT_FOR_WIDTH * wizardWidth;
-  };
-
-  var wizardSpeed = 3;
-
-  var getWizardX = function (gameFieldWidth) {
-    return (gameFieldWidth - wizardWidth) / HORIZONTAL_POSITION;
-  };
-
-  var getWizardY = function (gameFieldHeight) {
-    return gameFieldHeight / VERTICAL_POSITION;
-  };
-</script>
-
+<script src="js/stat.js"></script>
 <script src="js/game.js"></script>
 
 </body>
