@@ -1,7 +1,7 @@
 'use strict';
 
 const WIZARDS_COUNT = 4;
-const WIZARD_NAMES = [`Иван `, `Хуан Себастьян `, `Мария `, `Кристоф `, `Виктор `, `Юлия `, `Люпита `, `Вашингтон `];
+const WIZARD_NAMES = [`Иван`, `Хуан Себастьян`, `Мария`, `Кристоф`, `Виктор`, `Юлия`, `Люпита`, `Вашингтон`];
 const WIZARD_SURNAMES = [`да Марья`, `Верон`, `Мирабелла`, `Вальц`, `Онопко`, `Топольницкая`, `Нионго`, `Ирвинг`];
 const COAT_COLORS = [`rgb(101, 137, 164)`, `rgb(241, 43, 107)`, `rgb(146, 100, 161)`, `rgb(56, 159, 117)`, `rgb(215, 210, 55)`, `rgb(0, 0, 0)`];
 const EYES_COLORS = [`black`, `red`, `blue`, `yellow`, `green`];
@@ -12,7 +12,7 @@ const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)
 
 const getRandomNumber = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
 
-const getRandomItem = (array) => getRandomNumber(0, array.length - 1);
+const getRandomItem = (array) => array[getRandomNumber(0, array.length - 1)];
 
 const generateArray = (length, generatorItem) => [...Array(length)]
   .map(generatorItem);
@@ -23,7 +23,7 @@ const generateWizardList = () => generateArray(
 );
 
 const generateRandomWizard = () => ({
-  name: getRandomItem(WIZARD_NAMES) + getRandomItem(WIZARD_SURNAMES),
+  name: `${getRandomItem(WIZARD_NAMES)} ${getRandomItem(WIZARD_SURNAMES)}`,
   coatColor: getRandomItem(COAT_COLORS),
   eyesColor: getRandomItem(EYES_COLORS),
 });
