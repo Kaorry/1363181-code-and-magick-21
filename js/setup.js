@@ -164,12 +164,13 @@ mainWizardContainer.fireball.addEventListener(`click`, () => {
 });
 
 setupPopupOpen.addEventListener(`click`, openPopup);
-
 setupPopupOpen.addEventListener(`keydown`, (event) => {
   if (event.key === `Enter`) {
     openPopup();
   }
 });
+
+setupPopupClose.addEventListener(`click`, closePopup);
 
 userNameInput.addEventListener(`invalid`, () => {
   if (userNameInput.validity.tooShort) {
