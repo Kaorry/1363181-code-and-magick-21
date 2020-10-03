@@ -71,14 +71,14 @@ const similarWizardTemplate = document.querySelector(`#similar-wizard-template`)
 
 // Методы
 
-const onPopupEscPress = (event) => {
+const onPopupKeyPress = (event) => {
   if (event.key === KEY_ESCAPE && !event.target.matches(`input[type="text"]`)) {
     event.preventDefault();
     closePopup();
   }
 };
 
-const onPopupEnterPress = (event) => {
+const onPopupCloseKeyPress = (event) => {
   if (event.key === KEY_ENTER) {
     event.preventDefault();
     closePopup();
@@ -126,8 +126,8 @@ const renderWizardList = (wizardList) => {
 const openPopup = () => {
   setupPopup.classList.remove(`hidden`);
 
-  document.addEventListener(`keydown`, onPopupEscPress);
-  setupPopupClose.addEventListener(`keydown`, onPopupEnterPress);
+  document.addEventListener(`keydown`, onPopupKeyPress);
+  setupPopupClose.addEventListener(`keydown`, onPopupCloseKeyPress);
 
   setupPopup.querySelector(`.setup-similar`).classList.remove(`hidden`);
 };
@@ -135,8 +135,8 @@ const openPopup = () => {
 const closePopup = () => {
   setupPopup.classList.add(`hidden`);
 
-  document.removeEventListener(`keydown`, onPopupEscPress);
-  document.removeEventListener(`keydown`, onPopupEnterPress);
+  document.removeEventListener(`keydown`, onPopupKeyPress);
+  setupPopupClose.removeEventListener(`keydown`, onPopupCloseKeyPress);
 };
 
 // Логика
